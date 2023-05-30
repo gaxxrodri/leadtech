@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
-
-const URL_RANDOM_DRINK = `https://www.thecocktaildb.com/api/json/v1/1/random.php`
+import { getRandomDrink } from '../services/getRandomDrink'
 
 export interface Drink {
   strDrinkThumb: string
@@ -20,18 +19,10 @@ export const useDrinks = (): IUseDrinks => {
   useEffect(() => {
     const getDrinks = async () => {
       setLoading(true)
-      let drinksArray: Drink[] = []
       try {
-        for (let i = 0; i < 3; i++) {
-          const response = await fetch(URL_RANDOM_DRINK)
-          if (!response.ok) {
-            throw new Error('server side error')
-          }
-          const data = await response.json()
-          const { drinks } = data
-          drinksArray = [...drinksArray, ...drinks]
-        }
-        setData(drinksArray)
+        const drinksPromises = Array.from({length: 3}, getRandomDrink);
+        const drinksArray = await Promise.all(drinksPromises)
+        setData(drinksArray.flat())
       } catch (error) {
         throw new Error('Error en la petición')
       } finally {
