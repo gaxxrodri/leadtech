@@ -1,5 +1,8 @@
 import { type Drink } from '../../hoook/useDrinks'
 import './Card.css'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css'
+
 
 interface CardProps {
   image: string
@@ -16,7 +19,7 @@ export const Card = ({ image, title, id, setDrinkSelected, handleOpenModal }: Ca
   }
   return (
     <div className='card'>
-      <img src={image} alt={`Image from drink ${title}` } ></img>
+      <LazyLoadImage src={image} alt={`Image from drink ${title}`} effect='blur'/>
       <h4>{title}</h4>
       <button onClick={handleOnClick}>Like</button>
     </div>
