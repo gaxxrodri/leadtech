@@ -55,8 +55,8 @@ const Modal = ({ isOpen, drinkSelected, handleCloseModal, drinks, setDrinkSelect
             <img className='modal__image' src={drinkSelected.strDrinkThumb}>
             </img>
             <div className='modal_footer'>
-              <button disabled={isLastDrink} onClick={handleNext} className='modal__next_button'> Next drink</button>
-              <button disabled={isFirstDrink} onClick={handlePrev} className='modal__next_button'> Previous drink</button>
+              <button disabled={isFirstDrink} onClick={handlePrev} className='modal__navigate_button'> Previous drink</button>
+              <button disabled={isLastDrink} onClick={handleNext} className='modal__navigate_button'> Next drink</button>
             </div>
         </div>
 

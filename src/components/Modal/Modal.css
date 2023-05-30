@@ -65,7 +65,7 @@
   display: flex;
 }
 
-.modal__next_button{
+.modal__navigate_button{
   align-self: flex-end;
   justify-content: center;
   display: flex;
