@@ -18,6 +18,8 @@ const Modal = ({ isOpen, drinkSelected, handleCloseModal, drinks, setDrinkSelect
 
   const currentIndex = getCurrentIndex(drinks, drinkSelected);
   const isLastDrink = currentIndex === drinks.length - 1;
+  const isFirstDrink = currentIndex === 0;
+
 
   const handleNext = () => {
     if (isLastDrink) {
@@ -25,6 +27,14 @@ const Modal = ({ isOpen, drinkSelected, handleCloseModal, drinks, setDrinkSelect
     }
     const nextDrink = drinks[currentIndex + 1];
     setDrinkSelected(nextDrink);
+  }
+  
+  const handlePrev = () => {
+    if (isFirstDrink) {
+        return;
+    }
+    const prevDrink = drinks[currentIndex - 1];
+    setDrinkSelected(prevDrink);
   }
 
   return (
@@ -44,7 +54,10 @@ const Modal = ({ isOpen, drinkSelected, handleCloseModal, drinks, setDrinkSelect
             </div>
             <img className='modal__image' src={drinkSelected.strDrinkThumb}>
             </img>
-            <button disabled={isLastDrink} onClick={handleNext} className='modal__next_button'> Next drink</button>
+            <div className='modal_footer'>
+              <button disabled={isLastDrink} onClick={handleNext} className='modal__next_button'> Next drink</button>
+              <button disabled={isFirstDrink} onClick={handlePrev} className='modal__next_button'> Previous drink</button>
+            </div>
         </div>
 
         </div>
