@@ -20,7 +20,7 @@ export const useDrinks = (): IUseDrinks => {
     const getDrinks = async () => {
       setLoading(true)
       try {
-        const drinksPromises = Array.from({length: 3}, getRandomDrink);
+        const drinksPromises: Promise<Drink[]>[] = Array.from({length: 3}, getRandomDrink);
         const drinksArray = await Promise.all(drinksPromises)
         setData(drinksArray.flat())
       } catch (error) {
