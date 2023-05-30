@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Drink, useDrinks } from './hoook/useDrinks'
+import { type Drink, useDrinks } from './hoook/useDrinks'
 import { useModal } from './hoook/useModal'
 import { Card } from './components/Card/Card'
 import Modal from './components/Modal/Modal'
@@ -13,23 +13,30 @@ function App() {
   return (
     <>
       <div className='app_container'>
-        {loading 
-          ? <h1 style={{margin: '0 auto'}}>Loading...</h1> 
-          : drinks?.length 
-            ? drinks.map((drink: Drink) => (
-              <Card
-                handleOpenModal={handleOpenModal}
-                setDrinkSelected={setDrinkSelected}
-                key={drink.idDrink}
-                image={drink.strDrinkThumb}
-                title={drink.strDrink}
-                id={drink.idDrink}
-              />
-            )) 
-            : <h1>No data available</h1>
-        }
+        {loading ? (
+          <h1 style={{ margin: '0 auto' }}>Loading...</h1>
+        ) : drinks?.length ? (
+          drinks.map((drink: Drink) => (
+            <Card
+              handleOpenModal={handleOpenModal}
+              setDrinkSelected={setDrinkSelected}
+              key={drink.idDrink}
+              image={drink.strDrinkThumb}
+              title={drink.strDrink}
+              id={drink.idDrink}
+            />
+          ))
+        ) : (
+          <h1>No data available</h1>
+        )}
       </div>
-      <Modal drinkSelected={drinkSelected} isOpen={isOpen} handleCloseModal={handleCloseModal} drinks={drinks} setDrinkSelected={setDrinkSelected}/>
+      <Modal
+        drinkSelected={drinkSelected}
+        isOpen={isOpen}
+        handleCloseModal={handleCloseModal}
+        drinks={drinks}
+        setDrinkSelected={setDrinkSelected}
+      />
     </>
   )
 }
