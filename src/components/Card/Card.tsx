@@ -19,7 +19,12 @@ export const Card = ({ image, title, id, setDrinkSelected, handleOpenModal }: Ca
   }
   return (
     <div className='card'>
-      <LazyLoadImage src={image} alt={`Image from drink ${title}`} effect='blur'/>
+      <LazyLoadImage 
+        width='100%'
+        height='100%'
+        src={image}
+        alt={`Image from drink ${title}`} 
+        effect='blur'/>
       <h4>{title}</h4>
       <button onClick={handleOnClick}>Like</button>
     </div>
