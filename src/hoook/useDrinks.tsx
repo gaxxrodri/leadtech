@@ -19,7 +19,7 @@ export const useDrinks = (): IUseDrinks => {
         const drinksArray = await Promise.all(drinksPromises)
         setData(drinksArray.flat())
       } catch (error) {
-        throw new Error('Error en la petición')
+        throw new Error('Error while fetching data')
       } finally {
         setLoading(false)
       }
