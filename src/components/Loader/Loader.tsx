@@ -8,20 +8,7 @@ const Loader: React.FC<LoaderProps> = ({ text }: LoaderProps) => {
   return (
     <>
       <h1 style={{ margin: '0 auto' }}>{text}</h1>
-      <div className='lds-spinner'>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+      <div className="lds-ripple"><div></div><div></div></div>
     </>
   )
 }
