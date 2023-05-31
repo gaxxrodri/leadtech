@@ -1,20 +1,18 @@
-import { Drink } from "../hoook/useDrinks"
+import { type IApiResponse, type IDrink } from '../interfaces'
+import { transformDataToViewModel } from './utils'
 
 const URL_RANDOM_DRINK = `https://www.thecocktaildb.com/api/json/v1/1/random.php`
 
-interface IApiResponse {
-  drinks: Drink[]
-}
-
-export const getRandomDrink = async () => {
+export const getRandomDrink = async (): Promise<IDrink[]> => {
   try {
-    const response = await fetch(URL_RANDOM_DRINK)
+    const response: Response = await fetch(URL_RANDOM_DRINK)
     if (!response.ok) {
       throw new Error('server side error')
     }
     const data: IApiResponse = await response.json()
     const { drinks } = data
-    return drinks
+    const drinkToViewModel: IDrink[] = transformDataToViewModel(drinks)
+    return drinkToViewModel
   } catch (error) {
     throw new Error('client side error')
   }

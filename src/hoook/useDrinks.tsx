@@ -1,26 +1,21 @@
 import { useEffect, useState } from 'react'
 import { getRandomDrink } from '../services/getRandomDrink'
-
-export interface Drink {
-  strDrinkThumb: string
-  strDrink: string
-  idDrink: string
-}
+import { type IDrink } from '../interfaces'
 
 interface IUseDrinks {
-  data: Drink[]
+  data: IDrink[]
   loading: boolean
 }
 
 export const useDrinks = (): IUseDrinks => {
-  const [data, setData] = useState<Drink[]>([])
+  const [data, setData] = useState<IDrink[]>([])
   const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
     const getDrinks = async () => {
       setLoading(true)
       try {
-        const drinksPromises: Promise<Drink[]>[] = Array.from({length: 3}, getRandomDrink);
+        const drinksPromises: Array<Promise<IDrink[]>> = Array.from({ length: 3 }, getRandomDrink)
         const drinksArray = await Promise.all(drinksPromises)
         setData(drinksArray.flat())
       } catch (error) {

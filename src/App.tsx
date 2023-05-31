@@ -1,13 +1,14 @@
 import { useState } from 'react'
-import { type Drink, useDrinks } from './hoook/useDrinks'
+import { useDrinks } from './hoook/useDrinks'
 import { useModal } from './hoook/useModal'
 import { Card } from './components/Card/Card'
 import Modal from './components/Modal/Modal'
 import './App.css'
+import { type IDrink } from './interfaces'
 
 function App() {
   const { data: drinks, loading } = useDrinks()
-  const [drinkSelected, setDrinkSelected] = useState<Drink>({ strDrinkThumb: '', strDrink: '', idDrink: '' })
+  const [drinkSelected, setDrinkSelected] = useState<IDrink>({ image: '', name: '', id: '' })
   const { isOpen, handleCloseModal, handleOpenModal } = useModal()
 
   return (
@@ -16,15 +17,8 @@ function App() {
         {loading ? (
           <h1 style={{ margin: '0 auto' }}>Loading...</h1>
         ) : drinks?.length ? (
-          drinks.map((drink: Drink) => (
-            <Card
-              handleOpenModal={handleOpenModal}
-              setDrinkSelected={setDrinkSelected}
-              key={drink.idDrink}
-              image={drink.strDrinkThumb}
-              title={drink.strDrink}
-              id={drink.idDrink}
-            />
+          drinks.map((drink: IDrink) => (
+            <Card handleOpenModal={handleOpenModal} setDrinkSelected={setDrinkSelected} key={drink.id} drink={drink} />
           ))
         ) : (
           <h1>No data available</h1>

@@ -1,33 +1,32 @@
-import { Drink } from "../../../hoook/useDrinks";
-import { getCurrentIndex } from "../utils";
-
+import { type IDrink } from '../../../interfaces'
+import { getCurrentIndex } from '../utils'
 
 describe('Modal util functions', () => {
-    describe('getCurrentIndex function', () => {
-        test('should retorn index 1', () => {
-          const drinksMock: Drink[] = [
-            { strDrinkThumb: "url1", strDrink: "drink1", idDrink: "1" },
-            { strDrinkThumb: "url2", strDrink: "drink2", idDrink: "2" },
-            { strDrinkThumb: "url3", strDrink: "drink3", idDrink: "3" },
-          ];
-        
-          const selectedDrinkMock: Drink = { strDrinkThumb: "url2", strDrink: "drink2", idDrink: "2" };
-          const result = getCurrentIndex(drinksMock, selectedDrinkMock)
+  describe('getCurrentIndex function', () => {
+    test('should return index 1', () => {
+      const drinksMock: IDrink[] = [
+        { image: 'url1', name: 'drink1', id: '1' },
+        { image: 'url2', name: 'drink2', id: '2' },
+        { image: 'url3', name: 'drink3', id: '3' },
+      ]
 
-          expect(result).toBe(1);
-        });
+      const selectedDrinkMock: IDrink = { image: 'url2', name: 'drink2', id: '2' }
+      const result = getCurrentIndex(drinksMock, selectedDrinkMock)
 
-        test('should retorn index -1', () => {
-          const drinksMock: Drink[] = [
-            { strDrinkThumb: "url1", strDrink: "drink1", idDrink: "1" },
-            { strDrinkThumb: "url2", strDrink: "drink2", idDrink: "2" },
-            { strDrinkThumb: "url3", strDrink: "drink3", idDrink: "3" },
-          ];
-        
-          const selectedDrinkMock: Drink = { strDrinkThumb: "url4", strDrink: "drink 4", idDrink: "4" };
-          const result = getCurrentIndex(drinksMock, selectedDrinkMock)
-
-          expect(result).toBe(-1);
-        });
+      expect(result).toBe(1)
     })
+
+    test('should return index -1', () => {
+      const drinksMock: IDrink[] = [
+        { image: 'url1', name: 'drink1', id: '1' },
+        { image: 'url2', name: 'drink2', id: '2' },
+        { image: 'url3', name: 'drink3', id: '3' },
+      ]
+
+      const selectedDrinkMock: IDrink = { image: 'url4', name: 'drink 4', id: '4' }
+      const result = getCurrentIndex(drinksMock, selectedDrinkMock)
+
+      expect(result).toBe(-1)
+    })
+  })
 })

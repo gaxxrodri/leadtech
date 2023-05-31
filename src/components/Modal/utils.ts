@@ -1,6 +1,6 @@
-import { type Drink } from '../../hoook/useDrinks'
+import { type IDrink } from '../../interfaces'
 
-export const getCurrentIndex = (drinks: Drink[], drinkSelected: Drink): number => {
-  const currentIndex = drinks.findIndex(drink => drink.idDrink === drinkSelected.idDrink)
+export const getCurrentIndex = (drinks: IDrink[], drinkSelected: IDrink): number => {
+  const currentIndex = drinks.findIndex(drink => drink.id === drinkSelected.id)
   return currentIndex
 }

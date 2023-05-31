@@ -1,20 +1,20 @@
-import { type Drink } from '../../hoook/useDrinks'
+import { type IDrink } from '../../interfaces'
 import './Modal.css'
 import { getCurrentIndex } from './utils'
 
 interface ModalProps {
   isOpen: boolean
-  drinkSelected: Drink
+  drinkSelected: IDrink
+  drinks: IDrink[]
   handleCloseModal: () => void
-  drinks: Drink[]
-  setDrinkSelected: (drink: Drink) => void
+  setDrinkSelected: (drink: IDrink) => void
 }
 
-const Modal: React.FC<ModalProps>= ({
+const Modal: React.FC<ModalProps> = ({
   isOpen,
   drinkSelected,
-  handleCloseModal,
   drinks,
+  handleCloseModal,
   setDrinkSelected,
 }: ModalProps) => {
   if (!isOpen) {
@@ -51,19 +51,17 @@ const Modal: React.FC<ModalProps>= ({
       >
         <div className='modal__card'>
           <div className='modal__header'>
-            <h4 className='modal__text'>{drinkSelected.strDrink}</h4>
+            <h4 className='modal__text'>{drinkSelected.name}</h4>
             <button onClick={handleCloseModal} className='modal__close_button'>
               X
             </button>
           </div>
-          <img className='modal__image' src={drinkSelected.strDrinkThumb}></img>
+          <img className='modal__image' src={drinkSelected.image}></img>
           <div className='modal_footer'>
             <button disabled={isFirstDrink} onClick={handlePrev} className='modal__navigate_button'>
-              {' '}
               Previous drink
             </button>
             <button disabled={isLastDrink} onClick={handleNext} className='modal__navigate_button'>
-              {' '}
               Next drink
             </button>
           </div>
