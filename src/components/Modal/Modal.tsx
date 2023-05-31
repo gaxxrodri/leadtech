@@ -15,7 +15,7 @@ const Modal: React.FC<ModalProps> = ({
   drinkSelected,
   drinks,
   handleCloseModal,
-  setDrinkSelected,
+  setDrinkSelected
 }: ModalProps) => {
   if (!isOpen) {
     return null

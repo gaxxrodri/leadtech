@@ -1,7 +1,7 @@
 import { type IApiResponse, type IDrink } from '../interfaces'
-import { transformDataToViewModel } from './utils'
+import { transformDataToViewModel } from './transformers'
 
-const URL_RANDOM_DRINK = `https://www.thecocktaildb.com/api/json/v1/1/random.php`
+const URL_RANDOM_DRINK = 'https://www.thecocktaildb.com/api/json/v1/1/random.php'
 
 export const getRandomDrink = async (): Promise<IDrink[]> => {
   try {
@@ -14,6 +14,7 @@ export const getRandomDrink = async (): Promise<IDrink[]> => {
     const drinkToViewModel: IDrink[] = transformDataToViewModel(drinks)
     return drinkToViewModel
   } catch (error) {
-    throw new Error('client side error')
+    console.error('client side error')
+    throw error
   }
 }

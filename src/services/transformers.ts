@@ -6,6 +6,6 @@ export const transformDataToViewModel = (data: IDrinkResponse[]): IDrink[] => {
   return data.map((drink: IDrinkResponse) => ({
     id: drink.idDrink,
     name: drink.strDrink,
-    image: drink.strDrinkThumb,
+    image: drink.strDrinkThumb
   }))
 }
